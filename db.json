@@ -1,0 +1,4 @@
+{
+    "prod": "https://exitpuzzles-admin.firebaseio.com",
+    "dev": "https://exitpuzzles-admin-dev.firebaseio.com"
+}
