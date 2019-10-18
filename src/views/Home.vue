@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
   .logo {
-    width: 657px;/*800*/
+    width: 846px;/*800*/
   }
   .countdown {
     padding-top: 10px;
