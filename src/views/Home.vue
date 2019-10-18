@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img class="logo" src="../assets/logo.png" />
-    <div class="countdown">CLOSES IN - {{prettyHours}} {{prettyMinutes}}</div>
+    <div class="countdown">CLOSES IN - <span class='hours'>{{prettyHours}}</span><span class='minutes'>{{prettyMinutes}}</span></div>
   </div>
 </template>
 
@@ -20,7 +20,12 @@ export default {
       return `${this.hours}h`
     },
     prettyMinutes: function() {
-      return `${this.minutes}m`
+      if (this.minutes < 10) {
+        return `0${this.minutes}m`
+      }
+      else {
+        return `${this.minutes}m`
+      }
     }
   },
   mounted() {
@@ -47,14 +52,24 @@ export default {
   .countdown {
     padding-top: 10px;
     font-size: 85px;
-    opacity:.7;
-    font-family: 'BOOK ANTIQUA'
+    opacity:.4;
+    font-family: 'BOOK ANTIQUA';
   }
   .home {
     background-image: url("../assets/background.png");
     text-align:center;
     background-repeat: no-repeat; /* Do not repeat the image */
   
+  }
+  .hours {
+    display: inline-block;
+    text-align: right;
+    padding-right: 10px;
+  }
+  .minutes {
+    width: 200px;
+    display: inline-block;
+    text-align: right;
   }
   
 </style>
