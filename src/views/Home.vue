@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    TODO
+    <img class="logo" src="../assets/logo.png" />
   </div>
 </template>
 
@@ -11,11 +11,15 @@ export default {
 </script>
 
 <style scoped>
+  .logo {
+    width: 1100px;
+    
+  }
   .home {
     background-image: url("../assets/background.png");
     width: 1728px;
     height: 979px;
-    
+    text-align:center;
     background-repeat: no-repeat; /* Do not repeat the image */
   
   }
