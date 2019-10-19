@@ -30,16 +30,29 @@ export default {
     }
   },
   created() {
+    this.$root.$data.ref.on('value', (snapshot) => {
+      let dash = snapshot.val()
+      if (dash == null) return
+
+      // allow for button to replay notice sound
+      if (dash.notice) {
+        this.playNoticeSound()
+        snapshot.ref.update( { notice: null } )
+      }
+    })
   },
   mounted() {
-    
+    this.playNoticeSound()
+  },
+  methods: {
+    playNoticeSound() {
       // chrome blocks this so try/catch to prevent error on console
       // to fix you either interact with page, or you turn off in flags
       var promise = this.$refs.clueSnd.play();
       if (promise) {
         promise.catch(function(error) {  });
       }
-    
+    }
   }
 }
 </script>
