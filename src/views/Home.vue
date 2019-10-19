@@ -11,11 +11,15 @@ export default {
 
   data () {
     return {
-      hours: -1,
-      minutes: -1,
     }
   },
   computed: {
+    minutes: function() {
+      return this.$root.$data.minutes
+    },
+    hours: function() {
+      return this.$root.$data.hours
+    },
     prettyHoursAndMinutes: function() {
       if (this.hours == -1 || this.hours == 0 && this.minutes == 0) {
         return ''
@@ -36,35 +40,8 @@ export default {
   },
   created() {
     console.log(`created`)
-
-    this.$root.$data.ref.on('value', (snapshot) => {
-        let dash = snapshot.val()
-        if (dash == null) return
-
-        this.minutes = dash.minutes
-        this.hours = dash.hours
-
-        // if (dash.reload === true) {
-        //   // RELOAD CLIENT
-        //   console.log(`Reloading client...`);
-        //   // setTimeout(()=>{
-        //   //   window.location.replace(window.location.origin)
-        //   // }, 500)
-        // }
-    })
   },
   mounted() {
-    window.setInterval(() => {
-      if (this.minutes == 0) {
-        if (this.hours != 0) {
-          this.hours--;
-          this.minutes = 60
-        }
-      } else {
-        this.minutes--;
-      }
-      
-    }, 1000)
   }
 }
 </script>
