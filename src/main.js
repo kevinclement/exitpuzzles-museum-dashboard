@@ -55,3 +55,24 @@ ref.on('value', (snapshot) => {
     }
   }
 })
+
+setInterval(() => {
+  let h = data.hours
+  let m = data.minutes
+
+  if (m == 0) {
+    if (h > 0) {
+      h = h - 1
+      m = 60
+    }
+  } else if (data.minutes > 0) {
+    m = m - 1
+  }
+
+  if (h != data.hour || m != data.minutes) {
+    ref.update({
+      minutes: m,
+      hours: h
+    })
+  }
+}, 1000)
