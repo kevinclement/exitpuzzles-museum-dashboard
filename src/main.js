@@ -25,6 +25,15 @@ ref.on('value', (snapshot) => {
   vue.minutes = dash.minutes
   vue.hours = dash.hours
 
+  if (dash.reload == true) {
+    // RELOAD CLIENT 
+    console.log(`Reloading client...`);
+    snapshot.ref.update( { reload: false } )
+    setTimeout(()=>{
+       window.location.replace(window.location.origin)
+    }, 500)
+  }
+
   if (dash.route != router.currentRoute.name) {
     console.log(`Changing from ${router.currentRoute.name} to ${dash.route}`)
     if (dash.route == "home") {
@@ -33,12 +42,4 @@ ref.on('value', (snapshot) => {
       router.push(dash.route)
     }
   }
-
-  // if (dash.reload === true) {
-  //   // RELOAD CLIENT
-  //   console.log(`Reloading client...`);
-  //   // setTimeout(()=>{
-  //   //   window.location.replace(window.location.origin)
-  //   // }, 500)
-  // }
 })
