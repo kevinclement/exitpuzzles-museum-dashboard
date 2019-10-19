@@ -11,8 +11,8 @@ export default {
 
   data () {
     return {
-      hours: 0,
-      minutes: 9,
+      hours: 1,
+      minutes: 3,
     }
   },
   computed: {
@@ -25,6 +25,24 @@ export default {
     prefix: function() {
       return this.minutes < 0 ? "CLOSED" : "CLOSES IN"
     }
+  },
+  created() {
+    console.log(`created`)
+
+    this.$root.$data.ref.on('value', (snapshot) => {
+        let dash = snapshot.val()
+        if (dash == null) return
+
+        console.log(`foo: ${dash.foo}`)
+
+        // if (dash.reload === true) {
+        //   // RELOAD CLIENT
+        //   console.log(`Reloading client...`);
+        //   // setTimeout(()=>{
+        //   //   window.location.replace(window.location.origin)
+        //   // }, 500)
+        // }
+    })
   },
   mounted() {
     window.setInterval(() => {
