@@ -10,7 +10,8 @@ let data = {
   ref: ref,
   hours: -1,
   minutes: -1,
-  clue: -1
+  clue: -1,
+  adhoc: ""
 }
 
 let vue = new Vue({
@@ -25,9 +26,17 @@ ref.on('value', (snapshot) => {
 
   vue.minutes = dash.minutes
   vue.hours = dash.hours
+
   if (dash.clue >= 0) {
     vue.clue = dash.clues[dash.clue]
   } else {
+    vue.clue = {
+      file: 'empty.jpg'
+    }
+  }
+
+  vue.adhoc = dash.adhoc
+  if (vue.adhoc != "") {
     vue.clue = {
       file: 'empty.jpg'
     }
