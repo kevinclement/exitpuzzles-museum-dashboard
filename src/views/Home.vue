@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img class="logo" src="../assets/logo.png" />
-    <div class="countdown">CLOSES IN - <span class='hours'>{{prettyHours}}</span><span class='minutes'>{{prettyMinutes}}</span></div>
+    <div class="countdown"><span class="prefix">{{prefix}}</span> - <span :class="{ hoursMinsNegative: minutes<0 }" class="hoursMins">{{prettyHoursAndMinutes}}</span></div>
   </div>
 </template>
 
@@ -11,29 +11,29 @@ export default {
 
   data () {
     return {
-      hours: 2,
-      minutes: 11,
+      hours: 0,
+      minutes: 9,
     }
   },
   computed: {
-    prettyHours: function() {
-      return `${this.hours}h`
+    prettyHoursAndMinutes: function() {
+      let hStr = this.hours > 0 ? `${this.hours}h ` : ''
+      let mStr = this.minutes < 10 && this.minutes >= 0 ? `0${this.minutes}m` : `${Math.abs(this.minutes)}m`
+
+      return `${hStr}${mStr}`;
     },
-    prettyMinutes: function() {
-      if (this.minutes < 10) {
-        return `0${this.minutes}m`
-      }
-      else {
-        return `${this.minutes}m`
-      }
+    prefix: function() {
+      return this.minutes < 0 ? "CLOSED" : "CLOSES IN"
     }
   },
   mounted() {
     window.setInterval(() => {
-      if (this.minutes == 0) {
+      if (this.minutes <= 0) {
         if (this.hours != 0) {
           this.hours--;
           this.minutes = 60
+        } else {
+          this.minutes--; // go negative
         }
       } else {
         this.minutes--;
@@ -41,13 +41,13 @@ export default {
       
     }, 1000)
   }
-    // show a disconnected bar if
 }
 </script>
 
 <style scoped>
   .logo {
     height: 655px;
+    opacity:.4;
   }
   .countdown {
     padding-top: 10px;
@@ -58,18 +58,17 @@ export default {
   .home {
     background-image: url("../assets/background.png");
     text-align:center;
-    background-repeat: no-repeat; /* Do not repeat the image */
+    background-repeat: no-repeat;
   
   }
-  .hours {
-    display: inline-block;
-    text-align: right;
-    padding-right: 10px;
-  }
-  .minutes {
-    width: 200px;
-    display: inline-block;
+  .prefix {
     text-align: right;
   }
-  
+  .hoursMins {
+    text-align: left;
+  }
+  .hoursMinsNegative {
+    color: red;
+  }
+
 </style>
