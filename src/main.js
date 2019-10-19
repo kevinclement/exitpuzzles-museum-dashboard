@@ -56,10 +56,18 @@ ref.on('value', (snapshot) => {
   }
 })
 
+function playAudio(file) {
+  let a = new Audio(file)
+  var promise = a.play();
+  if (promise) {
+    promise.catch(function(error) { });
+  }
+}
+
 setInterval(() => {
   let h = data.hours
   let m = data.minutes
-
+  
   if (m == 0) {
     if (h > 0) {
       h = h - 1
@@ -67,6 +75,17 @@ setInterval(() => {
     }
   } else if (data.minutes > 0) {
     m = m - 1
+
+    if (h == 0 && m == 10) {
+      console.log("Closing in 10 minutes")
+      playAudio('/sounds/countdown_10min.wav')
+    } else if (h == 0 && m == 30) {
+      console.log("Closing in 30 minutes")
+      playAudio('/sounds/countdown_30min.wav')
+    } else if (h == 0 && m == 0) {
+      console.log("Closed")
+      playAudio('/sounds/countdown_finished.wav')
+    }
   }
 
   if (h != data.hour || m != data.minutes) {
