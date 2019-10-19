@@ -2,7 +2,7 @@
   <div class="capp">
     <img v-if="adhoc == ''" class="clue" :src='imgSrc' />
     <div v-else class="adhoc">
-      {{currentClue}}
+      <div class="adhocText">{{adhoc}}</div>
     </div>
   </div>
 </template>
@@ -42,12 +42,22 @@ export default {
 }
 .adhoc {
   position: absolute;
-  height: 100px;
-  background:green;
   top: 175px;
-  left: 200px;
-  right: 200px;
+  bottom: 170px;
+  left: 300px;
+  right: 300px;
   text-align: left;
-  font-family: 'blackadder'
+  font-family: 'blackadder';
+  font-size:75px;
+  opacity:.65;
+  vertical-align: middle;
+  text-align: center;
+  display: table-cell;
+}
+.adhocText {
+  vertical-align: middle;
+  display: table-cell;
+  height: 424px;
+  width: 765px;
 }
 </style>
