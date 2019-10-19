@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img class="logo" src="../assets/logo.png" />
-    <div class="countdown"><span class="prefix">{{prefix}}</span> - <span :class="{ hoursMinsNegative: minutes<0 }" class="hoursMins">{{prettyHoursAndMinutes}}</span></div>
+    <div class="countdown"><span class="prefix">{{prefix}}</span><span :class="{ hoursMinsNegative: minutes<0 }" class="hoursMins">{{prettyHoursAndMinutes}}</span></div>
   </div>
 </template>
 
@@ -11,19 +11,29 @@ export default {
 
   data () {
     return {
-      hours: 1,
-      minutes: 3,
+      hours: -1,
+      minutes: -1,
     }
   },
   computed: {
     prettyHoursAndMinutes: function() {
+      if (this.hours == -1) {
+        return ''
+      }
+
       let hStr = this.hours > 0 ? `${this.hours}h ` : ''
       let mStr = this.minutes < 10 && this.minutes >= 0 ? `0${this.minutes}m` : `${Math.abs(this.minutes)}m`
 
       return `${hStr}${mStr}`;
     },
     prefix: function() {
-      return this.minutes < 0 ? "CLOSED" : "CLOSES IN"
+      if (this.hours == -1) {
+        return ''
+      }
+
+      let p = this.minutes < 0 ? "CLOSED" : "CLOSES IN"
+
+      return p + ' - '
     }
   },
   created() {
@@ -45,19 +55,19 @@ export default {
     })
   },
   mounted() {
-    window.setInterval(() => {
-      if (this.minutes <= 0) {
-        if (this.hours != 0) {
-          this.hours--;
-          this.minutes = 60
-        } else {
-          this.minutes--; // go negative
-        }
-      } else {
-        this.minutes--;
-      }
+    // window.setInterval(() => {
+    //   if (this.minutes <= 0) {
+    //     if (this.hours != 0) {
+    //       this.hours--;
+    //       this.minutes = 60
+    //     } else {
+    //       this.minutes--; // go negative
+    //     }
+    //   } else {
+    //     this.minutes--;
+    //   }
       
-    }, 1000)
+    // }, 1000)
   }
 }
 </script>
@@ -71,6 +81,7 @@ export default {
     padding-top: 10px;
     font-size: 85px;
     opacity:.4;
+    height: 98px;
     font-family: 'BOOK ANTIQUA';
   }
   .home {
