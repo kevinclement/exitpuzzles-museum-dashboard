@@ -2,7 +2,7 @@
   <div class="capp">
     <img v-if="adhoc == ''" class="clue" :src='imgSrc' />
     <div v-else class="adhoc">
-      <div class="adhocText">{{adhoc}}</div>
+      <div class="adhocText" v-html="adhoc"></div>
     </div>
   </div>
 </template>
@@ -22,7 +22,8 @@ export default {
       return `clues/${this.currentClue.file}`
     },
     adhoc: function() {
-      return this.$root.$data.adhoc
+      let html = this.$root.$data.adhoc.replace(new RegExp("\n", 'g'), "<br/>")
+      return html
     }
   },
   created() {
