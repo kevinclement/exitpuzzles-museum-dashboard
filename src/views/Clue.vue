@@ -4,6 +4,9 @@
     <div v-else class="adhoc">
       <div class="adhocText" v-html="adhoc"></div>
     </div>
+    <audio ref="clueSnd" preload="true">
+      <source src="../../public/sounds/clue.wav" type="audio/wav"/>
+    </audio>
   </div>
 </template>
 
@@ -29,6 +32,14 @@ export default {
   created() {
   },
   mounted() {
+    
+      // chrome blocks this so try/catch to prevent error on console
+      // to fix you either interact with page, or you turn off in flags
+      var promise = this.$refs.clueSnd.play();
+      if (promise) {
+        promise.catch(function(error) {  });
+      }
+    
   }
 }
 </script>
