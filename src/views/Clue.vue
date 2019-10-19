@@ -1,6 +1,6 @@
 <template>
   <div>
-    clue  
+    <img class="clue" src='../assets/clues/dodo.jpg' />
   </div>
 </template>
 
@@ -21,4 +21,7 @@ export default {
 </script>
 
 <style scoped>
+.clue {
+  height: 774px;
+}
 </style>
