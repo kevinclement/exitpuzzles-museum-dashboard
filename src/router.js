@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Clue from '../views/Clue.vue'
+import Home from './views/Home.vue'
+import Clue from './views/Clue.vue'
 
 Vue.use(VueRouter)
 

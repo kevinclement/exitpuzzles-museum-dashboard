@@ -9,8 +9,7 @@ import { ref } from './db'
 let data = {
   ref: ref,
   hours: -1,
-  minutes: -1,
-  router: 'home'
+  minutes: -1
 }
 
 let vue = new Vue({
@@ -25,6 +24,15 @@ ref.on('value', (snapshot) => {
 
   vue.minutes = dash.minutes
   vue.hours = dash.hours
+
+  if (dash.route != router.currentRoute.name) {
+    console.log(`Changing from ${router.currentRoute.name} to ${dash.route}`)
+    if (dash.route == "home") {
+      router.push("/")
+    } else {
+      router.push(dash.route)
+    }
+  }
 
   // if (dash.reload === true) {
   //   // RELOAD CLIENT
