@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     prettyHoursAndMinutes: function() {
-      if (this.hours == -1) {
+      if (this.hours == -1 || this.hours == 0 && this.minutes == 0) {
         return ''
       }
 
@@ -31,9 +31,7 @@ export default {
         return ''
       }
 
-      let p = this.minutes < 0 ? "CLOSED" : "CLOSES IN"
-
-      return p + ' - '
+      return this.hours == 0 && this.minutes == 0 ? "CLOSED" : "CLOSES IN - "
     }
   },
   created() {
@@ -43,7 +41,8 @@ export default {
         let dash = snapshot.val()
         if (dash == null) return
 
-        console.log(`foo: ${dash.foo}`)
+        this.minutes = dash.minutes
+        this.hours = dash.hours
 
         // if (dash.reload === true) {
         //   // RELOAD CLIENT
@@ -55,19 +54,17 @@ export default {
     })
   },
   mounted() {
-    // window.setInterval(() => {
-    //   if (this.minutes <= 0) {
-    //     if (this.hours != 0) {
-    //       this.hours--;
-    //       this.minutes = 60
-    //     } else {
-    //       this.minutes--; // go negative
-    //     }
-    //   } else {
-    //     this.minutes--;
-    //   }
+    window.setInterval(() => {
+      if (this.minutes == 0) {
+        if (this.hours != 0) {
+          this.hours--;
+          this.minutes = 60
+        }
+      } else {
+        this.minutes--;
+      }
       
-    // }, 1000)
+    }, 1000)
   }
 }
 </script>
