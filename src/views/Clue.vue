@@ -48,7 +48,7 @@ export default {
   right: 300px;
   text-align: left;
   font-family: 'blackadder';
-  font-size:75px;
+  font-size:85px;
   opacity:.65;
   vertical-align: middle;
   text-align: center;
