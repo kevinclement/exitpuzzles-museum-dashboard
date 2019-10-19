@@ -61,7 +61,6 @@ export default {
     background-image: url("../assets/background.png");
     text-align:center;
     background-repeat: no-repeat;
-  
   }
   .prefix {
     text-align: right;

@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <img class="clue" :src='imgSrc' />
-    {{currentClue}}
+  <div class="capp">
+    <img v-if="adhoc == ''" class="clue" :src='imgSrc' />
+    <div v-else class="adhoc">
+      {{currentClue}}
+    </div>
   </div>
 </template>
 
@@ -18,6 +20,9 @@ export default {
     },
     imgSrc: function() {
       return `clues/${this.currentClue.file}`
+    },
+    adhoc: function() {
+      return this.$root.$data.adhoc
     }
   },
   created() {
@@ -30,5 +35,19 @@ export default {
 <style scoped>
 .clue {
   height: 774px;
+}
+.capp {
+  background: url("../../public/clues/empty.jpg");
+  height: 768px;
+}
+.adhoc {
+  position: absolute;
+  height: 100px;
+  background:green;
+  top: 175px;
+  left: 200px;
+  right: 200px;
+  text-align: left;
+  font-family: 'blackadder'
 }
 </style>

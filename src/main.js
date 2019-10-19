@@ -36,12 +36,7 @@ ref.on('value', (snapshot) => {
   }
 
   vue.adhoc = dash.adhoc
-  if (vue.adhoc != "") {
-    vue.clue = {
-      file: 'empty.jpg'
-    }
-  }
-
+  
   if (dash.reload == true) {
     // RELOAD CLIENT 
     console.log(`Reloading client...`);
