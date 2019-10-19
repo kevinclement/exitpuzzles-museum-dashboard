@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img class="logo" src="../assets/logo.png" />
-    <div class="countdown"><span class="prefix">{{prefix}}</span><span :class="{ hoursMinsNegative: minutes<0 }" class="hoursMins">{{prettyHoursAndMinutes}}</span></div>
+    <div class="countdown"><span class="prefix">{{prefix}}</span><span :class="{ hoursMinsRed: hours == 0 && minutes<10 }" class="hoursMins">{{prettyHoursAndMinutes}}</span></div>
   </div>
 </template>
 
@@ -69,7 +69,7 @@ export default {
   .hoursMins {
     text-align: left;
   }
-  .hoursMinsNegative {
+  .hoursMinsRed {
     color: red;
   }
 
