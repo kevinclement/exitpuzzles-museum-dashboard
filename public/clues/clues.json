@@ -1,0 +1,57 @@
+[
+    {
+      "name": "clock time",
+      "file": "clock.time.jpg",
+      "desc": "a desc"
+    },
+    {
+      "name": "dodo",
+      "file": "dodo.jpg",
+      "desc": "a desc"
+    },
+    {
+      "name": "hands color",
+      "file": "hands.color.jpg",
+      "desc": "a desc"
+    },
+    {
+      "name": "hands grasp",
+      "file": "hands.grasp.jpg",
+      "desc": "a desc"
+    },
+    {
+      "name": "laser align",
+      "file": "laser.align.jpg",
+      "desc": "a desc"
+    },
+    {
+      "name": "map",
+      "file": "map.jpg",
+      "desc": "a desc"
+    },
+    {
+      "name": "riddle",
+      "file": "riddle.jpg",
+      "desc": "a desc"
+    },
+    {
+      "name": "safe",
+      "file": "safe.jpg",
+      "desc": "a desc"
+    },
+    {
+      "name": "stairs simple",
+      "file": "stairs.readme.jpg",
+      "desc": "a desc"
+    },
+    {
+      "name": "stairs harder",
+      "file": "stairs.translate.jpg",
+      "desc": "a desc"
+    },
+    {
+      "name": "totem",
+      "file": "totem.jpg",
+      "desc": "a desc"
+    }
+  ]

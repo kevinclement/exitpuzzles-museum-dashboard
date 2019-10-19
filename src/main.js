@@ -9,7 +9,8 @@ import { ref } from './db'
 let data = {
   ref: ref,
   hours: -1,
-  minutes: -1
+  minutes: -1,
+  clue: -1
 }
 
 let vue = new Vue({
@@ -24,6 +25,13 @@ ref.on('value', (snapshot) => {
 
   vue.minutes = dash.minutes
   vue.hours = dash.hours
+  if (dash.clue >= 0) {
+    vue.clue = dash.clues[dash.clue]
+  } else {
+    vue.clue = {
+      file: 'empty.jpg'
+    }
+  }
 
   if (dash.reload == true) {
     // RELOAD CLIENT 

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <img class="clue" src='../assets/clues/dodo.jpg' />
+    <img class="clue" :src='imgSrc' />
+    {{currentClue}}
   </div>
 </template>
 
@@ -12,6 +13,12 @@ export default {
     }
   },
   computed: {
+    currentClue: function() {
+      return this.$root.$data.clue
+    },
+    imgSrc: function() {
+      return `clues/${this.currentClue.file}`
+    }
   },
   created() {
   },
