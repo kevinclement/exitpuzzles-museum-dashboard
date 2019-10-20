@@ -1,0 +1,16 @@
+[Unit]
+Description=ExitPuzzles Dashboard service
+After=syslog.target network.target
+
+[Service]
+User=pi
+Type=simple
+Restart=always
+RestartSec=7
+ExecStart=/usr/bin/serve /home/pi/code/dashboard/dist/
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=exitpuzzles-dash
+
+[Install]
+WantedBy=multi-user.target

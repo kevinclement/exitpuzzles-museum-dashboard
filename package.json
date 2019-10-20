@@ -5,7 +5,12 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "serve": "serve dist"
+    "serve": "serve dist",
+    "tail": "tail -f /var/log/syslog | grep exitpuzzles-dash",
+    "stop": "sudo systemctl stop exitpuzzles.dash.service",
+    "start": "sudo systemctl start exitpuzzles.dash.service",
+    "restart": "sudo systemctl restart exitpuzzles.dash.service",
+    "status": "sudo systemctl status exitpuzzles.dash.service"
   },
   "dependencies": {
     "core-js": "^3.1.2",
