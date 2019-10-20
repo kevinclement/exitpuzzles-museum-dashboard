@@ -18,6 +18,17 @@
       <strong>We're sorry but this doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
+
+    <!-- preload audio so it doesn't clip the first time it plays -->
+    <audio preload="true">
+      <source src="/sounds/countdown_10min.wav" type="audio/wav"/>
+    </audio>
+    <audio preload="true">
+      <source src="/sounds/countdown_30min.wav" type="audio/wav"/>
+    </audio>
+    <audio preload="true">
+      <source src="/sounds/countdown_finished.wav" type="audio/wav"/>
+    </audio>
     <!-- built files will be auto injected -->
   </body>
 </html>
