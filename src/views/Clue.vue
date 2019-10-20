@@ -5,7 +5,7 @@
       <div class="adhocText" v-html="adhoc"></div>
     </div>
     <audio ref="clueSnd" preload="true">
-      <source src="../../public/sounds/clue.wav" type="audio/wav"/>
+      <source src="../../public/sounds/clue.1s_silence.wav" type="audio/wav"/>
     </audio>
   </div>
 </template>

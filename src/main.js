@@ -78,13 +78,13 @@ setInterval(() => {
 
     if (h == 0 && m == 10) {
       console.log("Closing in 10 minutes")
-      playAudio('/sounds/countdown_10min.wav')
+      playAudio('/sounds/countdown_10min.1s_silence.wav')
     } else if (h == 0 && m == 30) {
       console.log("Closing in 30 minutes")
-      playAudio('/sounds/countdown_30min.wav')
+      playAudio('/sounds/countdown_30min.1s_silence.wav')
     } else if (h == 0 && m == 0) {
       console.log("Closed")
-      playAudio('/sounds/countdown_finished.wav')
+      playAudio('/sounds/countdown_finished.1s_silence.wav')
     }
   }
 
