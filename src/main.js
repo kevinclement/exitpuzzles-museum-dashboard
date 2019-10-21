@@ -5,11 +5,12 @@ import router from './router'
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
-import { ref } from './db'
+import { db, ref } from './db'
 let data = {
   ref: ref,
   hours: -1,
   minutes: -1,
+  solved: false,
   clue: -1,
   adhoc: ""
 }
@@ -19,6 +20,13 @@ let vue = new Vue({
   render: h => h(App),
   data: data
 }).$mount('#app')
+
+// track overall solved state of museum
+db.ref('museum').child('devices/mausoleum').on('value', (snapshot) => {
+  let mausoleum = snapshot.val()
+
+  data.solved = mausoleum.solved
+})
 
 ref.on('value', (snapshot) => {
   let dash = snapshot.val()
@@ -76,15 +84,18 @@ setInterval(() => {
   } else if (data.minutes > 0) {
     m = m - 1
 
-    if (h == 0 && m == 10) {
-      console.log("Closing in 10 minutes")
-      playAudio('/sounds/countdown_10min.1s_silence.wav')
-    } else if (h == 0 && m == 30) {
-      console.log("Closing in 30 minutes")
-      playAudio('/sounds/countdown_30min.1s_silence.wav')
-    } else if (h == 0 && m == 0) {
-      console.log("Closed")
-      playAudio('/sounds/countdown_finished.1s_silence.wav')
+    // only play audio if we haven't solved the room
+    if (!data.solved) { 
+      if (h == 0 && m == 10) {
+        console.log("Closing in 10 minutes")
+        playAudio('/sounds/countdown_10min.1s_silence.wav')
+      } else if (h == 0 && m == 30) {
+        console.log("Closing in 30 minutes")
+        playAudio('/sounds/countdown_30min.1s_silence.wav')
+      } else if (h == 0 && m == 0) {
+        console.log("Closed")
+        playAudio('/sounds/countdown_finished.1s_silence.wav')
+      }
     }
   }
 
