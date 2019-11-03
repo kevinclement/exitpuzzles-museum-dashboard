@@ -11,6 +11,7 @@ let data = {
   hours: -1,
   minutes: -1,
   solved: false,
+  runDate: undefined,
   clue: -1,
   adhoc: ""
 }
@@ -24,8 +25,14 @@ let vue = new Vue({
 // track overall solved state of museum
 db.ref('museum').child('devices/mausoleum').on('value', (snapshot) => {
   let mausoleum = snapshot.val()
-
   data.solved = mausoleum.solved
+})
+
+// track analytics runs
+db.ref('museum/runs').orderByKey().limitToLast(2000).on('value', (snapshot) => {
+  for (const [date, run] of Object.entries(snapshot.val())) {
+    data.runDate = date
+  }
 })
 
 ref.on('value', (snapshot) => {
@@ -104,5 +111,11 @@ setInterval(() => {
       minutes: m,
       hours: h
     })
+
+    if (h == 0 && m == 0 && data.runDate){
+      db.ref('museum/runs').child(data.runDate).update({
+        closed: (new Date()).toLocaleString()
+      })
+    }
   }
 }, 60000)
