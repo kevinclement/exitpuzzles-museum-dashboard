@@ -31,7 +31,9 @@ db.ref('museum').child('devices/mausoleum').on('value', (snapshot) => {
 // track analytics runs
 db.ref('museum/runs').orderByKey().limitToLast(2000).on('value', (snapshot) => {
   for (const [date, run] of Object.entries(snapshot.val())) {
-    data.runDate = date
+    if (run.finished == "") {
+      data.runDate = date
+    }
   }
 })
 
