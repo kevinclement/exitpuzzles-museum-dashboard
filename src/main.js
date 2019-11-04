@@ -108,7 +108,7 @@ setInterval(() => {
     }
   }
 
-  if (h != data.hour || m != data.minutes) {
+  if (h != data.hours || m != data.minutes) {
     ref.update({
       minutes: m,
       hours: h
