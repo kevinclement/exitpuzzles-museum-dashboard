@@ -1,6 +1,6 @@
 <template>
   <div class="capp">
-    <img v-if="adhoc == ''" class="clue" :src='imgSrc' />
+    <img v-if="adhoc == '' && $root.$data.clue != ''" class="clue" :src='imgSrc' />
     <div v-else class="adhoc">
       <div class="adhocText" v-html="adhoc"></div>
     </div>
