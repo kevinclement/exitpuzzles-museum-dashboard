@@ -8,12 +8,14 @@ Vue.config.devtools = false
 import { db, ref } from './db'
 let data = {
   ref: ref,
+  adhoc: "",
+  clue: "",
+  clues: [],
   hours: -1,
   minutes: -1,
+
   solved: false,
-  runDate: undefined,
-  clue: -1,
-  adhoc: ""
+  runDate: undefined
 }
 
 let vue = new Vue({
@@ -43,16 +45,9 @@ ref.on('value', (snapshot) => {
 
   vue.minutes = dash.minutes
   vue.hours = dash.hours
-
-  if (dash.clue >= 0) {
-    vue.clue = dash.clues[dash.clue]
-  } else {
-    vue.clue = {
-      file: 'empty.jpg'
-    }
-  }
-
+  vue.clue = dash.clue
   vue.adhoc = dash.adhoc
+  vue.clues = dash.clues
   
   if (dash.reload == true) {
     // RELOAD CLIENT 
@@ -63,12 +58,14 @@ ref.on('value', (snapshot) => {
     }, 500)
   }
 
-  if (dash.route != router.currentRoute.name) {
-    console.log(`Changing from ${router.currentRoute.name} to ${dash.route}`)
-    if (dash.route == "home") {
+  let route = dash.clue == 'home' ? 'home' : 'clue'
+
+  if (route != router.currentRoute.name) {
+    console.log(`Changing from ${router.currentRoute.name} to ${route}`)
+    if (route == "home") {
       router.push("/")
     } else {
-      router.push(dash.route)
+      router.push("clue")
     }
   }
 })

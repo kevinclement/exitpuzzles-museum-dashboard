@@ -13,16 +13,9 @@
 <script>
 export default {
   name: 'clue',
-  data () {
-    return {
-    }
-  },
   computed: {
-    currentClue: function() {
-      return this.$root.$data.clue
-    },
     imgSrc: function() {
-      return `clues/${this.currentClue.file}`
+      return `https://firebasestorage.googleapis.com/v0/b/exitpuzzles-admin.appspot.com/o/museum%2Fclues%2F${this.$root.$data.clue}.full.png?alt=media`
     },
     adhoc: function() {
       let html = this.$root.$data.adhoc.replace(new RegExp("\n", 'g'), "<br/>")
@@ -32,7 +25,6 @@ export default {
   created() {
     this.$root.$data.ref.on('value', (snapshot) => {
       let dash = snapshot.val()
-      if (dash == null) return
 
       // allow for button to replay notice sound
       if (dash.notice) {
