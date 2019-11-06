@@ -3,9 +3,9 @@ import 'firebase/database'
 
 const dbJSON = require('../db.json')
 
-let url = dbJSON.dev
-if (process.env.VUE_APP_DEV_MODE && process.env.VUE_APP_DEV_MODE == 'production') {
-  url = dbJSON.prod
+let url = dbJSON.prod
+if (process.env.VUE_APP_DEV_MODE && process.env.VUE_APP_DEV_MODE == 'dev') {
+  url = dbJSON.dev
 }
 
 // Get a Firestore instance
