@@ -31,12 +31,15 @@ db.ref('museum').child('devices/mausoleum').on('value', (snapshot) => {
 })
 
 // track analytics runs
-db.ref('museum/runs').orderByKey().limitToLast(2000).on('value', (snapshot) => {
-  for (const [date, run] of Object.entries(snapshot.val())) {
+db.ref('museum/runs').orderByChild('timestamp').limitToLast(2000).on('value', (snapshot) => {
+  snapshot.forEach(function(runSnap) {
+    let run = runSnap.val()
+    let key = runSnap.key
+
     if (run.finished == "") {
       data.runDate = date
     }
-  }
+  })
 })
 
 ref.on('value', (snapshot) => {
